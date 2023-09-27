@@ -1,0 +1,185 @@
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: white;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 20px;
+}
+
+#weatherData {
+  background: url("../fortune_cookie.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  font-family: "Roboto", sans-serif;
+}
+
+#weatherData:hover {
+  color: rgb(224, 245, 255);
+  transition: color 1s;
+}
+
+#weatherData:hover:before,
+#weatherData:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+#weatherData::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #9707f9,
+    #1f13f2 25%,
+    #4b07db 50%,
+    #0734db 65%,
+    #077bf9 85%
+  );
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+#weatherData::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate),
+    #9707f9,
+    #1f13f2 25%,
+    #4b07db 50%,
+    #0734db 65%,
+    #077bf9 85%
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  color: #212534; /* Same as body background */
+  border-color: #212534;
+  box-shadow: 0 0 10px white;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0.1;
+  z-index: -1;
+  border-radius: 6px;
+}
+
+button:hover::before {
+  opacity: 0.2;
+}
+
+#staticText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  color: white;
+  z-index: 1;
+}
+
+#weatherData:hover #staticText {
+  display: none;
+}
+
+.fortune-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%; /* Set the width to 80% of the parent div */
+  height: 80%; /* Set the height to 80% of the parent div */
+  margin: auto; /* Center the container */
+}
+
+.fortune-container h2 {
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.fortune-container p {
+  font-size: 0.9em;
+  font-weight: bold;
+}
